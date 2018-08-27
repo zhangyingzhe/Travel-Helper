@@ -1,0 +1,208 @@
+
+#search_form{
+	background-color: rgb(248,248,248);
+	padding-left: 15%;
+	padding-right: 10%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	margin-bottom: 2%;
+}
+
+
+.card-columns {
+  
+    column-count: 3;
+
+}
+
+#pills_tab{
+	text-align: center;
+}
+
+#pills-results-area{
+	width:100%;
+	overflow-x: scroll;
+}
+
+#pills-favorites-area{
+	width:100%;
+	overflow-x: scroll;
+}
+
+.table-hover{
+	min-width: 1100px;
+	overflow: scroll;
+}
+
+.table-striped{
+	min-width: 700px;
+	overflow: scroll;
+}
+
+.detail-block{
+	background-color: #FFCC66;
+}
+
+.circle {
+	border-radius: 50%;
+	width: 45px;
+	height: 45px; 
+}
+
+#info-table-area{
+	width:100%;
+	overflow-x: scroll;
+}
+
+#nav-info{
+	width:100%;
+	overflow-x: scroll;
+}
+
+#map_area{
+	width: 100%;
+	height: 350px;
+}
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+ 
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color:rgba(0,0,0,0);
+}
+ 
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+ 
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: rgb(218,116,53);
+}
+
+#search_form{
+	margin-top: 2%;
+}
+
+.btn-light{
+	background-color: white;
+}
+
+#pills-tabContent.ng-hide-remove{
+	animation :1s slideLeft;
+}
+
+@keyframes slideLeft{
+	from{
+		opacity: 0;
+		left: 150%;
+	}to{
+		opacity: 1;
+		left: 0;
+	}
+}
+
+#detail-area.ng-hide-remove{
+	animation :1s slideRight;
+}
+
+@keyframes slideRight{
+	from{
+		opacity: 0;
+		left: -150%;
+	}to{
+		opacity: 1;
+		left: 0;
+	}
+}
+
+
+
+#review_switch.ng-hide-remove{
+	animation :1.5s fadein;
+}
+#review_switch{
+	position: relative;
+}
+
+@keyframes fadein{
+	from{
+		opacity: 0;
+	}to{
+		opacity: 1;
+	}
+}
+
+#no-review.ng-hide-remove{
+	animation :1.5s fadein;
+}
+#no-review{
+	position: relative;
+}
+
+@keyframes fadein{
+	from{
+		opacity: 0;
+	}to{
+		opacity: 1;
+	}
+}
+
+/*#review_switch.ng-hide{
+	animation :0.3s fadeout;
+}
+#review_switch{
+	position: relative;
+}
+
+@keyframes fadeout{
+	from{
+		opacity: 1;
+	}to{
+		opacity: 0;
+	}
+}*/
+
+#detail-area{
+	position: relative;
+}
+
+#pills-tabContent{
+	position: relative;
+}
+
+#nav-info, #nav-photos{
+	padding-top: 2%;
+}
+
+#map-display-type{
+	margin-bottom: 1%;
+}
+
+#test.ng-hide-remove{
+	animation:0.4s slideLeft;
+}
+
+@keyframes slideLeft{
+	from{
+		opacity: 0;
+		left: 150%;
+	}to{
+		opacity: 1;
+		left: 0;
+	}
+}
+
+#test{
+	position: relative;
+	left:0;
+}

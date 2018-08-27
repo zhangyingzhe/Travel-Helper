@@ -1,0 +1,414 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<!--<link rel="stylesheet" media="only screen and (min-width:200px) and (max-width: 500px)" href="small.css">
+<link rel="stylesheet" media="only screen and (min-width:501px) and (max-width: 1100px)" href="large.css">-->
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-animate.js"></script>
+
+
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<link rel="stylesheet" type="text/css" href="website.css">
+<script src="server.js"></script>
+
+
+<!--<link rel="stylesheet" type="text/css" href="/public/hw8.css">
+<script src="/public/hw8.js"></script>-->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGRZTJ8BVZdyd53mKdQuosvK_wQpwJ-do&language=en&libraries=places&callback=initAutocomplete" async defer></script>
+
+<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.14/moment-timezone.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.14/moment-timezone-with-data-2012-2022.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.14/moment-timezone-with-data.min.js"></script>
+     
+
+</head>
+
+<body onload="getGeolocation()">
+
+<div class="container">
+
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+
+<form id="search_form" method="GET" name="search_form" action="" class="rounded border mt-6 mx-auto col-sm-10">
+
+<h3 class="text-center">Travel and Entertainment Search</h3>
+
+<div class="form-group row">
+<label for="keyword" class="col-sm-2 control-label">Keyword<span style="color: red">*</span> </label> 
+    <div class="col-sm-8">
+		<input type="text" name="keyword" id="keyword" class="form-control" required>
+    <div class="invalid-feedback">
+      Please enter a keyword.
+    </div>
+	</div>
+</div>
+
+<div class="form-group row">
+<label for="category" class="col-sm-2 control-label">Category </label> 
+<div class="col-sm-6">
+<select name="category" class="custom-select">
+	<option value="default" selected>Default</option>
+	<option value="airport">Airport</option>
+	<option value="amusement_park">Amusement Park</option>
+	<option value="aquarium">Aquarium</option>
+	<option value="art_gallery">Art Gallery</option>
+	<option value="bakery">Bakery</option>
+	<option value="bar">Bar</option>
+	<option value="beauty_salon">Beauty Salon</option>
+	<option value="bowling_alley">Bowling Alley</option>
+	<option value="bus_station">Bus Station</option>
+	<option value="cafe">Cafe</option>
+  <option value="campground">Campground</option>
+	<option value="car_rental">Car Rental</option>
+	<option value="casino">Casino</option>
+	<option value="lodging">Lodging</option>
+	<option value="movie_theater">Movie Theater</option>
+	<option value="museum">Museum</option>
+	<option value="night_club">Night Club</option>
+	<option value="park">Park</option>
+	<option value="parking">Parking</option>
+	<option value="restaurant">Restaurant</option>
+	<option value="shopping_mall">Shopping Mall</option>
+	<option value="stadium">Stadium</option>
+	<option value="subway_station">Subway Station</option>
+	<option value="taxi_stand">Taxi Stand</option>
+	<option value="train_station">Train Station</option>
+	<option value="transit_station">Transit Station</option>
+	<option value="travel_agency">Travel Agency</option>
+	<option value="zoo">Zoo</option>
+
+</select>
+</div>
+</div>
+
+<div class="form-group row">
+<label for="distance" class="col-sm-2 control-label">Distance(miles)</label>
+<div class="col-sm-6">
+	<input type="text" name="distance" class="form-control" placeholder="10">
+</div>
+</div>
+
+<fieldset class="form-group">
+  <div class="row">
+	<legend class="col-sm-2 control-label">From<span style="color: red">*</span></legend>
+
+<div class="col-sm-8">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="from" id="from1" value="option1" onchange="fromLocationChange()" checked>
+
+          <label class="form-check-label" for="from1">
+            Current location
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="from" id="from2" value="option2" onchange="fromLocationChange()">
+          <label class="form-check-label" for="from2">
+            Others.Place specify:
+          </label>
+        </div>
+        <div class="col-sm-9.5">
+          <input type="text" name="location" id="location_text" placeholder="Enter a location" required  onFocus="geolocate()" class="form-control" disabled>
+          <div class="invalid-feedback">
+            Please enter a location.
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+
+<div class="form-group row">
+  <div class="col-md-6">
+      <button type="button" class="btn btn-primary" id="search" disabled onclick="SearchNearby()">
+      <span class="fa fa-search"></span> Search
+      </button>
+      <input type="button" value="Clear" class="btn btn-light border" onclick= "Reset()">
+    </div>
+</div>
+
+</form> 
+
+<div class="d-flex justify-content-center">
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-results-tab" data-toggle="pill" href="#pills-results" role="tab" aria-controls="pills-results" aria-selected="true" onclick="showResultsList()" ng-click="">Results</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-favorites-tab" data-toggle="pill" href="#pills-favorites" role="tab" aria-controls="pills-favorites" aria-selected="false" onclick="showFavoritesTable()">Favorives</a>
+  </li>
+</ul>
+</div>
+
+<div class="progress" style="display: none">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+</div>
+
+<div class="tab-content" id="pills-tabContent" ng-hide="!ngshow_pills_tabContent">
+  <div class="tab-pane fade show active" id="pills-results" role="tabpanel" aria-labelledby="pills-results-tab" >
+    <div class="d-flex"><div class="ml-auto p-2">
+      <button type ="button" class="btn btn-light border" id="results-detail-button" disabled ng-click="ngshow_pills_tabContent=false;" onclick="showDetail()" style="display: none">
+        Details<span class="fa fa-chevron-right"></span>
+      </button>
+    </div></div>
+    <div id="pills-results-area"></div>
+      <div id="results_pre_next"></div>
+
+   <!--<table class="table table-hover">
+      <thead><tr><th>#</th><th>Category</th><th>Name</th><th>Address</th><th>Favorite</th><th>Detail</th></tr></thead>
+      <tbody>
+      
+          <tr ng-repeat="x in results_table_data.pages[results_table_data.cur_page] track by $index ">
+        <td> {{x.idx}}</td>
+        <td><img ng-src="{{x.icon }}" width=40px alt=""></td>
+        <td>{{x.name}} </td>
+        <td>{{x.address}}</td>
+
+        <td>
+          <button type ="button" class="btn btn-light border" id= '{{x.store_data}}' onclick = "favoritesStorage(this)">
+        <div ng-show = "x.is_fav"> <i class="fa fa-star" style="color:yellow"></i></div>
+         <div ng-hide = "x.is_fav"> <i class="fa fa-star-o"></i></div>
+          </button>
+        </td>
+
+
+        <td><button type="button" class="btn btn-light border" id ="{{x.place_id}} " ng-click = "ng_GetPlaceDatail(x.place_id)">
+         <span class="fa fa-chevron-right"></span> 
+       </button>
+     </td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+            <div class="d-flex justify-content-center">
+            <ul class="pagination">
+          <div ng-show="results_table_data.cur_page > 0">
+            <li class="page-item">
+              <a class="page-link" href="javascript:void(0)" ng-click="ng_getPreviousPage()">Previous</a>
+            </li>
+          </div>
+      <div ng-show="results_table_data.token.length > results_table_data.cur_page">
+        <li class="page-item">
+          <a class="page-link" href="javascript:void(0)" ng-click= "ng_getNextPage()">Next</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+</nav>-->
+  </div>
+  <div class="tab-pane fade" id="pills-favorites" role="tabpanel" aria-labelledby="pills-favorites-tab">
+    <div class="d-flex"><div class="ml-auto p-2">
+      <button type ="button" class="btn btn-light border" id="favorites-detail-button" disabled ng-click="ngshow_pills_tabContent=false;" onclick="showDetail()">
+        Details<span class="fa fa-chevron-right"></span>
+      </button>
+    </div>
+  </div>
+      <div id="pills-favorites-area"></div>
+      <div id="favorites_pre_next"></div>
+</div>
+</div>
+
+<div id="map"></div>
+
+
+
+<div id='detail-area' ng-hide="!ngshow_pills_tabContent">
+  <div id='detail-title'>
+    <h3 style="text-align:center">{{ place.name }}</h3>
+      <div class="d-flex">
+      <div class="mr-auto p-2">
+        <button type="button" class="btn btn-outline-dark"  ng-click="ngshow_pills_tabContent = true" onclick="showListButton()">
+          <span class="fa fa-chevron-left"></span>List
+        </button>
+      </div>
+     <div class="p-2">
+      <button type ="button" class="btn btn-light border" id= ' {{place.store_data}} ' ng-click="">  
+        <div ng-show="place.is_fav"><i class="fa fa-star" style="color:yellow"></i></div>
+        <div ng-hide="place.is_fav"><i class="fa fa-star-o"></i></div>
+      </button>
+    </div>
+      <div class="p-2">
+        <img src="http://cs-server.usc.edu:45678/hw/hw8/images/Twitter.png" onclick="tweetCompose(this)" style="align:right;width:40px" id= '{{place.twitter_content}}'>
+      </div>
+      </div>
+  </div>
+
+  <nav>
+  <div class="nav nav-tabs d-flex justify-content-end" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Info</a>
+    <a class="nav-item nav-link" id="nav-photos-tab" data-toggle="tab" href="#nav-photos" role="tab" aria-controls="nav-photos" aria-selected="false">Photos</a>
+    <a class="nav-item nav-link" id="nav-map-tab" data-toggle="tab" href="#nav-map" role="tab" aria-controls="nav-map" aria-selected="false">Map</a>
+    <a class="nav-item nav-link" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews" role="tab" aria-controls="nav-reviews" aria-selected="false" ng-click="changeReviewSource('google_review');review_type='Google Reviews';sort_order='index_num'; order_text='Default Order';">Reviews</a>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab"></div>
+  <div class="tab-pane fade" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab"></div>
+
+
+  <!--map area-->
+  <div class="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab\">
+    <form class="p-1">
+      <div class="form-row d-flex">
+  <div class="form-group col-md-4 p-1">
+    <label for="map_from">From</label> 
+    <input type="text" class="form-control" id="map_from" value="Your location" onFocus="map_geolocate()">
+  </div>
+  <div class="form-group col-md-4 p-1">
+    <label for="map_to">To</label>
+    <input type="text" class="form-control" id="map_to" readonly>
+  </div>
+  <div class="form-group col-md-2 p-1">
+        <label for="map_travel_mode">Travel Mode</label>
+        <select name="transmethod" class="custom-select" id = "map_travel_mode">
+          <option value="DRIVING" selected>Driving</option>
+          <option value="BICYCLING">Bicycling</option>
+          <option value="TRANSIT">Transit</option>
+          <option value="WALKING">Walking</option>
+        </select>
+      </div>
+  
+  <div class="form-group col-md-2 ml-auto pl-md-4 p-1">
+    <label for="get_directions">&nbsp;</label></br>
+    <button type="button" id = "get_directions" class="btn btn-primary d-flex justify-content-end" >Get Directions</button>
+  </div>
+  </div>
+  </form>
+  <img src="http://cs-server.usc.edu:45678/hw/hw8/images/Pegman.png" alt="MAPBUTTON" width="40px" id="map-display-type" class="border rounded">
+  <div id="map_area"></div>
+  <div id="directionsPanel" width="800px" height="600px"></div>
+  <div style="height: 50px;width: 100%">&nbsp;</div>
+  </div>
+<!--map area end-->
+
+
+
+<!--review area-->
+  <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
+    <div style="margin-top: 2%;margin-bottom: 2%">
+
+    <div class="btn-group">
+      <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"  type="button" aria-haspopup="true" aria-expanded="false">{{review_type}}</button>
+      <div class="dropdown-menu">
+        <button type="button" class="dropdown-item" href="javascript:void(0)" ng-click="changeReviewSource('google_review');review_type='Google Reviews';">Google Reviews</button>
+        <button type="button" class="dropdown-item" href="javascript:void(0)" ng-click="changeReviewSource('yelp_review');review_type='Yelp Reviews';">Yelp Reviews</button>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" type="button" aria-haspopup="true" aria-expanded="false">{{order_text}}</button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="javascript:void(0)" ng-click="sort_order='index_num'; order_text='Default Order';">Default Order</a>
+        <a class="dropdown-item" href="javascript:void(0)" ng-click="sort_order='-rating'; order_text='Highest Rating';">Highest Rating</a>
+        <a class="dropdown-item" href="javascript:void(0)" ng-click="sort_order='rating'; order_text='Lowest Rating';">Lowest Rating</a>
+        <a class="dropdown-item" href="javascript:void(0)" ng-click="sort_order='-time'; order_text='Most Recent';">Most Recent</a>
+        <a class="dropdown-item" href="javascript:void(0)" ng-click="sort_order='time'; order_text='Least Recent';">Least Recent</a>
+      </div>
+    </div>
+
+  </div>
+<div ng-show="google_review_switch" id="review_switch">
+<div ng-show="review_data" style="min-height:800px;">
+	<!--repeat begin-->
+<div ng-repeat="x in review_data | orderBy:sort_order">
+    <div class="card" style="margin-bottom: 1%">
+      <div class="card-body">
+       <table>
+        <tr>
+        <td class="align-top" ng-if="x.photo_url">
+        	<a href="{{x.author_url}}" target="_blank" ng-if="x.author_url">
+        		<span ng-show="review_type == 'Yelp Reviews'"><img ng-src="{{x.photo_url}}" alt="" class="circle"></span>
+        		<span ng-hide="review_type == 'Yelp Reviews'"><img ng-src="{{x.photo_url}}" alt="" class="rounded circle"></span>
+        	</a>
+        	<a target="_blank" ng-hide="x.author_url">
+        		<span ng-show="review_type == 'Yelp Reviews'"><img ng-src="{{x.photo_url}}" alt="" class="circle"></span>
+        		<span ng-hide="review_type == 'Yelp Reviews'"><img ng-src="{{x.photo_url}}" alt="" class="rounded circle"></span>
+        	</a>
+    	</td>
+    	<td ng-hide="x.photo_url" class="circle"></td>
+        <td>
+          <div class="card-text">
+          	<a href="{{x.author_url}}" target="_blank" ng-if="x.author_url">{{x.author_name}}</a>
+          	<a ng-hide="x.author_url" >{{x.author_name}}</a>
+          </div>
+          <p class="card-text"><small class="text-muted">
+            <span ng-repeat="n in x.stars">
+              <i class="fa fa-star" style="color:rgb(218,116,54)"></i>
+            </span>
+           {{x.time}}</small></p>
+          <p >{{x.text}}</p>
+       </td>
+      </tr>
+    </table>
+        </div>
+    </div>
+  </div>
+  <!--repeat end-->
+</div>
+
+</div>
+<div class="alert alert-warning" role="alert" ng-hide=" review_data.length" style="margin:80px 0;" id="no-review">
+          No records.
+  </div>
+  
+</div>
+<!--review end-->
+
+</div>
+</div>
+
+
+
+
+<!--open hour window-->
+<div class="modal fade" id="open-hour-modal" tabindex="-1" role="dialog" aria-labelledby="open-hour-modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="open-hour-modal-title">Open hours</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id='open-hour-body'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--open hour window end-->
+
+</div>
+
+</div>
+
+</body>
+</html>
